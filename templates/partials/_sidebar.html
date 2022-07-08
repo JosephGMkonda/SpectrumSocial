@@ -3,7 +3,7 @@
     <div class="position-sticky pt-3">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
+          <a class="nav-link active" aria-current="page" href="{% url 'feeds'%}">
             <span data-feather="home"></span>
             Home
           </a>
@@ -11,13 +11,40 @@
         <li class="nav-item">
           <a class="nav-link" href="#">
             <span data-feather="file"></span>
-            Friends
+            Explore
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
             <span data-feather="shopping-cart"></span>
-            Messages
+            Notifications
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="shopping-cart"></span>
+            inbox
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="shopping-cart"></span>
+            Profile
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'newpost'%}">
+            <span data-feather="shopping-cart"></span>
+            New Post
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="shopping-cart"></span>
+            settings
           </a>
         </li>
         

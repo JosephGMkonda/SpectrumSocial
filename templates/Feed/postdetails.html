@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+  
+
+  <div class="row justify-content-center ">
+    <div class="col-md-8 col-sm-12 border-bottom">
+
+    
+      <div class="card mt-4 mb-5" style="width: 40rem;">
+       
+        <div class="img-wrapper">
+        <img src="{{post.pictures.url}}" class="card-img-top " alt="Responsive image"/>
+      </div>
+      <h5 class="card-title mt-2 p-4"><strong>@{{post.user.username}}</strong></h5>
+        <div class="card-body">
+          <p class="card-text">{{post.caption}}</p>
+
+          <div class="float-end p-2">
+            <p> {{post.like}} <a href="{% url 'postlike' post.id %} " class="btn btn-light">Likes</a></p>
+          </div>
+           <div>
+
+    </div>
+  </div>
+
+
+  <div class="card ">
+    <p> hellloo </p>
+  </div>
+  
+  <form action="" method="post">
+    {% csrf_token %}
+  
+    <div class="form-group">
+    
+  
+      <a href="" class="btn btn-light">Comment</a>
+      
+    </div>
+  
+    
+  
+  </form>
+  </div>
+</div>
+
+
+
+
+
+
+</div>
+    
+
+
+    
+
+    
+
+
+      {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+    {% for post in Posts%}
+
+  <div class="row justify-content-center ">
+    <div class="col-md-8 col-sm-12 border-bottom">
+
+<div class="card mt-4" style="width: 40rem;">
+        
+        <div class="img-wrapper  mt-4">
+       <a href="{{post.get_absolute_url}}"> <img src="{{post.pictures.url}}" class="card-img-top " alt="Responsive image"/><a/>
+      </div>
+        <div class="card-body">
+          <p class="card-text">{{post.caption}}</p>
+          
+        </div>
+        {% endfor %}
+      </div
+
+
+      {% endblock %}

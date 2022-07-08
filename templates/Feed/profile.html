@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row mt-5">
+  
+<div class="col-md-3 col-sm-6">
+    <a href="{% url 'feeds'%}" class="btn btn-light">Back to Feed </a>
+</div>
+
+</div>
+
+<div class="row justify-content-center mt-5">
+  <div class="card shadow-sm col-md-8 col-sm-12 border-bottom px-5 pt-3">
+    <span>
+    <img src="{{profile.picture.url}}" class="rounded-circle" width="100" height="100"/>
+  </span>
+  <span>
+    {% if profile.first_name %}
+    <h4 class="py-1">{{ profile.first_name }} {{ profile.last_name }}</h4>
+    {% endif %}
+
+    <h4 class="">@{{profile.user}}</h4>
+  </span>
+  <div class="px-1">
+    <a href="" class="btn btn-secondary">Follow</a>
+
+  </div>
+  <div class="row pt-3">
+    <div class="col">
+      <h5>Posts</h5>
+      <h6>{{ post_count}}</h6>
+    </div>
+
+    <div class="col">
+      <h5>Following</h5>
+      <h6>{{following_count}}</h6>
+    </div>
+
+    <div class="col">
+      <h5>Followers</h5>
+      <h6>{{followers_count}}</h6>
+    </div>
+
+    <p>{% if profile.profile_info %}{{profile.profile_info}} {% endif %}</p>
+   
+   
+    
+  </div>
+
+  <div>
+   {% if user.is_authenticated and user == profile.user %}
+    <a href="" class="btn btn-primary">Edit Profile</a>
+    {% endif %}
+  </div>
+  
+
+
+
+
+   
+
+  </div>
+
+</div>
+
+
+
+
+
+</div>
+
+
+      {% endblock %}

@@ -1,84 +1,94 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
 
 {% block content %}
 
 <div class="container">
 
-    <div class="row  mt-3">
-        <div class="col-md-1">
+  {% for post_item in post_items %}
 
-        </div>
+  <div class="row justify-content-center ">
+    <div class="col-md-8 col-sm-12 border-bottom">
+
     
-     <div class="card-body">
-    
-
-        <div class=" col-md-10 border-bottom">
-
-          <h5>Add a Post</h5>
-
-        </div>
-
-        <div class="border-bottom">
-            <div class="row ">
-          
-
-            <form mathod="post">
-                {% csrf_token%}
-                {{form | crispy}}
-
-                <div class="">
-                    <button class="btn btn-primary mt-3">Post</button>
-                </div>
-
-            </form>
-
-        </div>
-            
-  
-          </div>
-        </div>
-        <div class="col-md-1">
-        </div>
-
-
-    </div>
-
-
-    {% for posts in post_list %}
-
-    <div class="row  mt-3">
-        <div class="col-md-1">
-
-        </div>
+      <div class="card mt-4" style="width: 40rem;">
+        
+        <div class="img-wrapper  mt-4">
+       <a href="{{post_item.get_absolute_url}}"> <img src="{{post_item.pictures.url}}" class="card-img-top " alt="Responsive image"/></a>
+      </div>
         <div class="card-body">
+          <h5 class="card-title mt-2"><strong>@{{post_item.user.username}}</strong> </h5>
+          
+          {{post_item.caption}}
 
-            <div class=" col-md-10 border-bottom">
-                <div class="card-title">
-                
-                <p><strong>{{posts.author}} </strong>{{posts.created_on}}</p>
-            </div>
-                <p>{{posts.image}}</p>
-                <p>{{posts.body}}</p>
-    
-            </div>
+          <p> {% for tags in post_item.tags.all%}<a href="{{tag.get_absolute_url}}"></a>#{{tags}}{% endfor%}</P>
 
+
+
+
+          {{post_item.posted}} 
+
+
+          <div class="float-end p-2">
+            <p> {{post_item.like}} <a href="{% url 'postlike' post_item.id %}" class="btn btn-light">Likes</a></p>
+          </div>
+             <div class="py-2">
+
+              <a href="{{post_item.get_absolute_url}}" class="btn btn-light">Comments </a>
+             </div>
+          
         </div>
+      </div
+
+      
+
+    
     
 
-
-       
-        <div class="col-md-1">
-        </div>
+{% endfor%}
 
 
-    </div>
-
-
-    {% endfor %}
 
 </div>
+
+
+    {% comment %} <div class="row">
+        <div class="col-2">
+        </div>
+
+    
+    <div class="col-6  border-bottom">
+    
+
+      <div class="card" style="width: 30rem;">
+        <div class="img-wrapper ">
+        <img src="{{post_item.pictures.url}}" class="card-img-top " alt="Responsive image"/>
+      </div>
+        <div class="card-body">
+          
+          <h5 class="card-title">@{{post_item.user.username}}</h5>
+          <p class="card-text">{{post_item.caption}}</p>
+          
+          <time datetime="2016-1-1">{{post_item.posted}} </time>
+        </div>
+      </div
+
+      {% endfor %}
+
+    
+    
+
+      
+</div>
+
+
+<div class="col-2">
+</div>
+    
+
+</div>
+   {% endcomment %}
+  
 
 
 

@@ -1,16 +1,49 @@
 from urllib import request
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.views import View
-from .models import User
+from .models import Profile
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from validate_email import validate_email
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.urls import resolve
+from PostFeed.models import Posts,Follow 
+from django.template import loader
+
 
 
 # Create your views here.
+
+def UserProfile(request, username):
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+    url_name = resolve(request.path).url_name
+
+    if url_name == 'profile':
+        posts = Posts.objects.filter(user=user).order_by('-posted')
+    else:
+        posts = profile.favorites.all()
+
+    post_count = Posts.objects.filter(user=user).count()
+    following_count = Follow.objects.filter(follower=user).count()
+    followers_count = Follow.objects.filter(following=user).count()
+
+
+    template = loader.get_template('Feed/profile.html')
+
+    context = {
+        'posts': posts,
+        'profile': profile,
+        'post_count':post_count,
+        'following_count':following_count,
+        'followers_count':followers_count,
+    }
+
+    return HttpResponse(template.render(context,request))
+
+
 
 class EmailValidation(View):
     def post(self,request):

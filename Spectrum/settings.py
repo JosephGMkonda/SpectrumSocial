@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Feed',
+    'PostFeed',
     'authentication',
-    'crispy_forms'
+    'crispy_forms',
+    "Comment"
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,9 @@ STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ 
 
 
 # Default primary key field type
